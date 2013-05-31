@@ -5,23 +5,21 @@ module Scene
 
     def call
       response['Content-Type'] = 'text/html; charset=UTF-8'
-      response.write(template.render)
-      response.finish
+      haml 'scene/new'
     end
 
 
     private
 
-    def template
-      get_or_set :template do
-        Tilt::HamlTemplate.new(File.join(view_dir, 'scene/new.haml'))
-      end
+    def haml(path)
+      template = Tilt::HamlTemplate.new(File.join(views, "#{path}.haml"))
+      output = template.render(self)
+      response.write(output)
+      response.finish
     end
 
-    def view_dir
-      get_or_set :view_dir do
-        File.expand_path File.join(File.dirname(__FILE__), '../..', 'views')
-      end
+    def views
+      File.expand_path File.join(ROOT_DIR, 'views')
     end
 
   end
