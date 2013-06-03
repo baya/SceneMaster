@@ -2,18 +2,21 @@
 %html
   %head
     %title Scene Master
+    %link{href: '/assets/css/bootstrap.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
+    %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
   %body{class: ''}
-    %div
-      %h2 创建场景
+    %div.container
       %form{action: '/scene', method: 'post'}
-        %p
-          %label 场景名
-          %input{type: 'text', name: 'scene[name]'}
-        %p
-          %label 场景描述
-          %textarea{name: 'scene[description]'}  
-        %p
-          %input{type: 'submit', value: '提交'}
-        
+        %fieldset
+          %legend 创建场景
+          %div
+            %label.control-label 场景名
+            %input{type: 'text', name: 'scene[name]'}
+          %div    
+            %label.control-label 场景描述
+            %textarea{name: 'scene[description]', rows: '10'}
+          %div
+            %input{type: 'submit', value: '提交', class: 'btn'}
+
     
   

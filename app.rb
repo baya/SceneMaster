@@ -23,4 +23,5 @@ SceneMaster = Ground::CreateApp(name: '场景大师')
 Ground::StartApp app: SceneMaster, port: 9393 do
   use Rack::ShowExceptions
   use Rack::CommonLogger
+  use Rack::Static, :urls => ['/assets']
 end
