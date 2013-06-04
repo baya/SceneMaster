@@ -5,7 +5,7 @@ module Scene
 
     def call
       CreateScene params[:scene]
-      redirect '/scenes'
+      redirect Scene::Index.path
     end
     
   end

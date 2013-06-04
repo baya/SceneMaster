@@ -1,20 +1,23 @@
+-# coding: UTF-8
 !!!
 %html
   %head
-    %title Scene Master
+    %title 场景大师
     %link{href: '/assets/css/bootstrap.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
     %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
   %body{class: ''}
     %div.container
-      %form{action: '/scene', method: 'post'}
+      %form{action: Scene::Create.path, method: 'post'}
         %fieldset
           %legend 创建场景
           %div
             %label.control-label 场景名
             %input{type: 'text', name: 'scene[name]'}
-          %div    
-            %label.control-label 场景描述
-            %textarea{name: 'scene[description]', rows: '4'}
+          %div.activity
+            %label.control-label 活动
+            %input{type: 'text', class: 'input-small', placeholder: '角色'}
+            %input{type: 'text', class: 'input-small', placeholder: '动作'}
+            %textarea{placeholder: '内容'} 
           %div
             %input{type: 'submit', value: '提交', class: 'btn'}
 

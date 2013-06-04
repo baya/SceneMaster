@@ -15,13 +15,17 @@ require 'scene/new'
 require 'scene/create'
 require 'create_scene'
 
-DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
-ROOT_DIR = File.dirname(__FILE__)
+module SceneMaster
+  DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
+  root = File.dirname(__FILE__)
+  config = Ground::Config(views: File.expand_path(File.join(root, 'views')))
 
-SceneMaster = Ground::CreateApp(name: '场景大师')
+  App = Ground::CreateApp(name: '场景大师', config: config)
 
-Ground::StartApp app: SceneMaster, port: 9393 do
-  use Rack::ShowExceptions
-  use Rack::CommonLogger
-  use Rack::Static, :urls => ['/assets']
+  Ground::StartApp app: App, port: 9393 do
+    use Rack::ShowExceptions
+    use Rack::CommonLogger
+    use Rack::Static, :urls => ['/assets']
+  end
+  
 end
