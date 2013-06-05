@@ -7,12 +7,16 @@
     %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
   %body
     %div.container
+      %div.row-fluid
       - @scenes.each do |scene|
-        %dl.dl-horizontal
-          %dt
-            %a{href: '', }= scene[:name]
-          %dd= scene[:description]
-                
+        %div.span3
+          %h3= scene[:name]
+          %ul
+            - @activities.where(scene_id: scene[:id]).each do |activity|
+              %li
+                %span= activity[:role]
+                %span= activity[:action]
+                %span= activity[:content]
 
     
   

@@ -1,9 +1,17 @@
 class CreateScene < Ground::Activity
 
-  data_reader :name, :description
+  data_reader :name, :activities
 
   def call
-    db[:scenes].insert(name: name, description: description)
+    scene_id = db[:scenes].insert(name: name)
+    activities.each {|activity|
+      db[:activities].insert(   role: activity[:role],
+                              action: activity[:action],
+                             content: activity[:content],
+                            scene_id: scene_id
+                             )
+    }
+    scene_id
   end
 
   private
