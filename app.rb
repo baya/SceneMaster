@@ -14,6 +14,8 @@ require 'scene/index'
 require 'scene/new'
 require 'scene/create'
 require 'create_scene'
+require 'validate_scene'
+require 'validate_activity'
 
 module SceneMaster
   DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
