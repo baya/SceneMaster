@@ -13,9 +13,37 @@ $(function(){
 	    return false
 
 	var data = getActivityData();
-	sendActivityData(data);
+	sendActivityData(data, function(data){
+	    renderActivityData(data);
+	    resetActivityInput();
+	});
 	
     })
+
+    function resetActivityInput(){
+	var role = findActivityItem('input.role');
+	var action = findActivityItem('input.action');
+	var content = findActivityItem('textarea.content');
+
+	role.val('');
+	action.val('');
+	content.val('');
+    }
+
+    function renderActivityData(data){
+        var html = getActivityHtmlText(data);
+	$('#add').prev().before(html)
+    }
+
+    function getActivityHtmlText(data){
+	var html = "<li class=\'activity\'>" +
+	    "<span>" + data.role + "</span>" +
+	    "<span>" + data.action + "</span>" +
+	    "<span>" + data.content + "</span>" +
+	    "</li>";
+
+	return html;
+    }
 
     function validates(col, msg, handler){
 	var item = findActivityItem(col);
@@ -47,16 +75,9 @@ $(function(){
 	return data;
     }
 
-    function sendActivityData(data){
-	$.ajax({
-	    type: 'POST',
-	    url: '/activity',
-	    data: data,
-	    dataType: 'json',
-	    success: function(text){
-		console.dir(text);
-	    }
-	})
+    function sendActivityData(activity_data, handler){
+	var url = '/activity';
+	$.post(url, activity_data, handler, 'json')
     }
 
 })

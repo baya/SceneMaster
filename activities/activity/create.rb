@@ -5,7 +5,7 @@ module Activity
 
     def call
       res = CreateActivity params
-      json res
+      json res.to_json
     end
     
   end
