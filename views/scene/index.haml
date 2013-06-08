@@ -9,14 +9,9 @@
     %div.container
       %div.row-fluid
       - @scenes.each do |scene|
-        %div.span3
-          %h3= scene[:name]
-          %ul
-            - @activities.where(scene_id: scene[:id]).each do |activity|
-              %li
-                %span= activity[:role]
-                %span= activity[:action]
-                %span= activity[:content]
+        %div
+          %h3
+            %a{href: Scene::Show.path(scene[:id])}= scene[:name]
 
     
   
