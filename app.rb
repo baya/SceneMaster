@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-libdir = '/Users/jiangguimin/Projects/ground/lib'
+libdir = '/Users/jim/Projects/ground/lib'
 $LOAD_PATH.unshift libdir unless $LOAD_PATH.include?(libdir)
 
 current_dir = File.expand_path(File.dirname(__FILE__))
@@ -9,13 +9,15 @@ $LOAD_PATH.unshift current_dir unless $LOAD_PATH.include?(current_dir)
 activity_dir = File.expand_path(File.join(File.dirname(__FILE__), 'activities'))
 $LOAD_PATH.unshift activity_dir unless $LOAD_PATH.include?(activity_dir)
 
-
+require 'bundler/setup'
 require 'ground'
 require 'rack'
 require 'haml'
 require 'tilt'
 require 'sequel'
 require 'json'
+require 'logger'
+
 require 'protocol/find'
 require 'scene/index'
 require 'scene/new'
@@ -28,7 +30,11 @@ require 'validate_scene'
 require 'validate_activity'
 
 module SceneMaster
-  DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
+  # DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
+  # migration command, bin/sequel -E -m migrations/ sqlite://./SceneMaster_development.db
+  DB = Sequel.sqlite('SceneMaster_development.db')
+  DB.loggers << ::Logger.new('logs/development.log')
+  
   root = File.dirname(__FILE__)
   config = Ground::Config(views: File.expand_path(File.join(root, 'views')))
 
