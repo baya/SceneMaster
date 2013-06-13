@@ -4,7 +4,11 @@ module Session
   class SignUp
 
     def call
-      puts "++++++++++++++++++#{params.inspect}"
+      @user = CreateUser params[:user]
+      if @user
+        session[:user_email] = @user[:email]
+      end
+      redirect Scene::Index.path
     end
     
   end

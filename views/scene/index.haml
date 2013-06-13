@@ -12,10 +12,13 @@
         %div.container
           %h2 场景大师
           %ul.nav.pull-right
-            %li.first
-              %a{href: Session::SignForm.path} 注册
-            %li.last
-              %a{href: ''} 登录
+            - if session[:user_email].nil?
+              %li.first
+                %a{href: Session::SignForm.path} 注册
+              %li.last
+                %a{href: ''} 登录
+            - else
+              %span= session[:user_email].split('@')[0]
     %div.container
       %div#main.container-fluid
         %div.content

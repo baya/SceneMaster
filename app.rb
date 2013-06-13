@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-libdir = '/Users/jim/Projects/ground/lib'
+libdir = '/Users/jiangguimin/Projects/ground/lib'
 $LOAD_PATH.unshift libdir unless $LOAD_PATH.include?(libdir)
 
 current_dir = File.expand_path(File.dirname(__FILE__))
@@ -17,6 +17,7 @@ require 'tilt'
 require 'sequel'
 require 'json'
 require 'logger'
+require 'bcrypt'
 
 require 'protocol/find'
 require 'scene/index'
@@ -28,13 +29,15 @@ require 'session/sign_form'
 require 'session/sign_up'
 require 'create_scene'
 require 'create_activity'
+require 'create_user'
 require 'validate_scene'
 require 'validate_activity'
 
 module SceneMaster
-  # DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
+  # sequel -m migrations/ postgres://pgsql:@localhost/SceneMaster_development
+  DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
   # migration command, bin/sequel -E -m migrations/ sqlite://./SceneMaster_development.db
-  DB = Sequel.sqlite('SceneMaster_development.db')
+  # DB = Sequel.sqlite('SceneMaster_development.db')
   DB.loggers << ::Logger.new('logs/development.log')
   
   root = File.dirname(__FILE__)
@@ -46,6 +49,7 @@ module SceneMaster
     use Rack::ShowExceptions
     use Rack::CommonLogger
     use Rack::Static, :urls => ['/assets']
+    use Rack::Session::Pool
   end
   
 end
