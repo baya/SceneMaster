@@ -1,0 +1,42 @@
+-# coding: UTF-8
+!!!
+%html
+  %head
+    %title 场景大师
+    %link{href: '/assets/css/bootstrap.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
+    %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
+    %link{href: '/assets/css/front.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}  
+  %body
+    %div.navbar.navbar-fixed-top
+      %div.navbar-inner
+        %div.container
+          %h2 场景大师
+          %ul.nav.pull-right
+            %li.first
+              %a.current{href: Session::SignForm.path} 注册
+            %li.last
+              %a{href: ''} 登录
+
+    %div.container
+      %div#main.container-fluid
+        %div.content
+          %form.form-horizontal{action: Session::SignUp.path, method: 'post'}
+            %h3 注册
+            %div.control-group
+              %label.control-label 邮箱
+              %div.controls
+                %input{type: 'text', name: 'user[email]'}
+            %div.control-group
+              %label.control-label 密码
+              %div.controls
+                %input{type: 'password', name: 'user[password]'}
+            %div.control-group
+              %label.control-label 确认密码
+              %div.controls
+                %input{type: 'password', name: 'user[password_confirm]'}
+            %div.control-group
+              %div.controls
+                %input{type: 'submit', value: '注册', class: 'btn'}
+
+    
+  

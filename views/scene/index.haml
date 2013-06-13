@@ -5,13 +5,24 @@
     %title 场景大师
     %link{href: '/assets/css/bootstrap.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
     %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
-  %body
+    %link{href: '/assets/css/front.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}  
+  %body{'data-offset' => 50}
+    %div.navbar.navbar-fixed-top
+      %div.navbar-inner
+        %div.container
+          %h2 场景大师
+          %ul.nav.pull-right
+            %li.first
+              %a{href: Session::SignForm.path} 注册
+            %li.last
+              %a{href: ''} 登录
     %div.container
-      %div.row-fluid
-      - @scenes.each do |scene|
-        %div
-          %h3
-            %a{href: Scene::Show.path(scene[:id])}= scene[:name]
+      %div#main.container-fluid
+        %div.content
+          - @scenes.each do |scene|
+            %div.topics
+              %h4
+                %a{href: Scene::Show.path(scene[:id])}= scene[:name]
 
     
   
