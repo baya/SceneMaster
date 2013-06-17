@@ -1,3 +1,6 @@
 .navbar-fixed-top h2{margin:4px 0;padding:0;float:left;}
 .navbar-fixed-top{margin-bottom: 10px;position:static;}
 .form-horizontal h3{margin-left: 180px;}
+.activity {margin:6px 0;}
+.activity textarea{height: 20px;width: 400px;}
+span.btn{margin:0 2px;}

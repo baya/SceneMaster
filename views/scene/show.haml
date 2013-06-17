@@ -2,27 +2,44 @@
 !!!
 %html
   %head
-    %title= @scene[:name]
+    %title 场景大师
     %link{href: '/assets/css/bootstrap.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
     %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
+    %link{href: '/assets/css/front.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
     %script{type: 'text/javascript', src: '/assets/js/jquery-2.0.2.min.js'}
     %script{type: 'text/javascript', src: '/assets/js/scene.js'}
-  %body
+  
+  %body{'data-offset' => 50}
+    %div.navbar.navbar-fixed-top
+      %div.navbar-inner
+        %div.container
+          %h2 场景大师
+          %ul.nav.pull-right
+            - if session[:user_email].nil?
+              %li.first
+                %a{href: Session::SignForm.path} 注册
+              %li.last
+                %a{href: ''} 登录
+            - else
+              %span= session[:user_email].split('@')[0]
+  
     %div.container
-      %div
-        %h3= @scene[:name]
+      %div#main.container-fluid
+        %center
+          %h4= @scene[:name]
         %input#scene_id.data{type: 'hidden', value: @scene[:id]}
-        %ul
+        %ul.unstyled
           - @activities.each do |activity|
             %li.activity
-              %span= activity[:role]
-              %span= activity[:action]
-              %span= activity[:content]
+              %span.btn.btn-primary.role= activity[:role]
+              %span.btn.btn-inverse.action= activity[:action]
+              %span.btn.btn-info.content= activity[:content]
           %li.activity
             %input{type: 'text', name: 'scene[activities][][role]', class: 'input-small role', placeholder: '角色'}
             %input{type: 'text', name: 'scene[activities][][action]', class: 'input-small action', placeholder: '动作'}
-            %textarea{name: 'scene[activities][][content]', class: 'content', placeholder: '内容'} 
-          %span#add.icon-plus  
+            %textarea{name: 'scene[activities][][content]', class: 'content', placeholder: '内容'}
+          %li    
+            %span#add.icon-plus
 
     
   

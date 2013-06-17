@@ -32,14 +32,14 @@ $(function(){
 
     function renderActivityData(data){
         var html = getActivityHtmlText(data);
-	$('#add').prev().before(html)
+	$('#add').parent().prev().before(html)
     }
 
     function getActivityHtmlText(data){
 	var html = "<li class=\'activity\'>" +
-	    "<span>" + data.role + "</span>" +
-	    "<span>" + data.action + "</span>" +
-	    "<span>" + data.content + "</span>" +
+	    "<span class='btn btn-primary role'>" + data.role + "</span>" +
+	    "<span class='btn btn-inverse action'>" + data.action + "</span>" +
+	    "<span class='btn btn-info content'>" + data.content + "</span>" +
 	    "</li>";
 
 	return html;
@@ -56,7 +56,7 @@ $(function(){
     }
 
     function findActivityItem(col) {
-	var item = $('#add').prev().children(col).first();
+	var item = $('#add').parent().prev().children(col).first();
 	return item;
     }
 
@@ -79,5 +79,16 @@ $(function(){
 	var url = '/activity';
 	$.post(url, activity_data, handler, 'json')
     }
+
+    function clickBtnTextToInput(col) {
+	$('.btn.' + col).bind('click', function(){
+	    var item = findActivityItem('.' + col);
+	    item.val($(this).text());
+	})
+    }
+
+    clickBtnTextToInput('role');
+    clickBtnTextToInput('action');
+    clickBtnTextToInput('content');
 
 })
