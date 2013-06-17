@@ -4,11 +4,14 @@ module Session
   class SignUp
 
     def call
-      @user = CreateUser params[:user]
-      if @user
+      @errors = ValidateUser params[:user]
+      if @errors.size > 0
+        text @errors.inspect
+      else
+        @user = CreateUser params[:user]
         session[:user_email] = @user[:email]
+        redirect Scene::Index.path
       end
-      redirect Scene::Index.path
     end
     
   end

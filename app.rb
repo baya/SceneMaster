@@ -27,11 +27,15 @@ require 'scene/show'
 require 'activity/create'
 require 'session/sign_form'
 require 'session/sign_up'
+require 'session/login_form'
+require 'session/login'
 require 'create_scene'
 require 'create_activity'
 require 'create_user'
 require 'validate_scene'
 require 'validate_activity'
+require 'validate_user'
+require 'authenticate_user'
 
 module SceneMaster
   # sequel -m migrations/ postgres://pgsql:@localhost/SceneMaster_development

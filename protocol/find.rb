@@ -20,6 +20,10 @@ module Protocol
       db[:scenes].order(Sequel.desc :id).limit(num)
     end
 
+    def find_user_by(col, value)
+      db[:users].where(col => value).first
+    end
+
   end
   
 end
