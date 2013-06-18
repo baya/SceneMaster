@@ -3,4 +3,4 @@
 .form-horizontal h3{margin-left: 180px;}
 .activity {margin:6px 0;}
 .activity textarea{height: 20px;width: 400px;}
-span.btn{margin:0 2px;}
+span.label{margin:0 1px;cursor:hand;cursor:pointer;}

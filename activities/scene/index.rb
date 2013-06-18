@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 module Scene
-  Index = Ground::Ridge(path: '/scenes', verb: 'get')
 
-  class Index
+  class Index < Ground::State
 
     include Protocol::Find
 
@@ -12,5 +11,7 @@ module Scene
     end
 
   end
+
+  Ground::Ridge path: '/scenes', verb: 'get', state: Index
   
 end

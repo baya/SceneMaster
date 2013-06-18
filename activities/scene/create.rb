@@ -1,7 +1,7 @@
 module Scene
-  Create = Ground::Ridge(path: '/scene', verb: 'post')
+  
 
-  class Create
+  class Create < Ground::State
 
     def call
       CreateScene params[:scene]
@@ -9,5 +9,7 @@ module Scene
     end
     
   end
+
+  Ground::Ridge path: '/scene', verb: 'post', state: Create
   
 end

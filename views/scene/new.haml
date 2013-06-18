@@ -5,23 +5,50 @@
     %title 场景大师
     %link{href: '/assets/css/bootstrap.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
     %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
-  %body{class: ''}
+    %link{href: '/assets/css/front.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
+    %script{type: 'text/javascript', src: '/assets/js/jquery-2.0.2.min.js'}
+    %script{type: 'text/javascript', src: '/assets/js/bootstrap.min.js'}    
+    %script{type: 'text/javascript', src: '/assets/js/scene.js'}
+
+  %body{'data-offset' => 50}
+    %div.navbar.navbar-fixed-top
+      %div.navbar-inner
+        %div.container
+          %h2 场景大师
+          %ul.nav.pull-right
+            - if session[:user_email].nil?
+              %li.first
+                %a{href: Session::SignForm.path} 注册
+              %li.last
+                %a{href: ''} 登录
+            - else
+              %ul.nav.pull-right
+                %li.dropdown#user_menu
+                  %a.dropdown-toggle{'data-toggle' => 'dropdown', 'href' => '#user_menu'}
+                    = session[:user_email].split('@')[0] 
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li.last
+                      %a{href: ''} 退出
+
     %div.container
-      %form{action: Scene::Create.path, method: 'post'}
-        %fieldset
-          %legend 创建场景
-          %div
-            %label.control-label 场景名
-            %input{type: 'text', name: 'scene[name]'}
-          %div.activity
-            %label.control-label 活动
-            %input{type: 'text', name: 'scene[activities][][role]', class: 'input-small', placeholder: '角色'}
-            %input{type: 'text', name: 'scene[activities][][action]', class: 'input-small', placeholder: '动作'}
-            %textarea{name: 'scene[activities][][content]', placeholder: '内容'} 
+      %div#main.container-fluid
+        %div.content
+          %center
+            %h4 创建场景
+          %form{action: Scene::Create.path, method: 'post'}
+            %div
+              %label.control-label 场景名
+              %input{type: 'text', name: 'scene[name]'}
+            %div.activity
+              %label.control-label 活动
+              %input{type: 'text', name: 'scene[activities][][role]', class: 'input-small', placeholder: '角色'}
+              %input{type: 'text', name: 'scene[activities][][action]', class: 'input-small', placeholder: '动作'}
+              %textarea{name: 'scene[activities][][content]', placeholder: '内容'} 
 
-              
-          %div
-            %input{type: 'submit', value: '提交', class: 'btn'}
 
-    
+            %div
+              %input{type: 'submit', value: '提交', class: 'btn'}
+
+
   

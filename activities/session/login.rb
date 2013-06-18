@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 module Session
-  Login = Ground::Ridge path: '/login', verb: 'post'
+  
  
-  class Login
+  class Login < Ground::State
 
     def call
       user = AuthenticateUser params[:user]
@@ -15,5 +15,7 @@ module Session
     end
     
   end
+
+  Ground::Ridge path: '/login', verb: 'post', state: Login
   
 end

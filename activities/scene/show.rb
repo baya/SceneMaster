@@ -1,7 +1,6 @@
 module Scene
-  Show = Ground::Ridge(path: '/scene/:id', verb: 'get')
 
-  class Show
+  class Show < Ground::State
 
     include Protocol::Find
 
@@ -12,5 +11,7 @@ module Scene
     end
 
   end
+
+  Ground::Ridge path: '/scene/:id', verb: 'get', state: Show
   
 end

@@ -1,7 +1,6 @@
 module Session
-  SignUp = Ground::Ridge(path: '/sign_up', verb: 'post')
 
-  class SignUp
+  class SignUp < Ground::State
 
     def call
       @errors = ValidateUser params[:user]
@@ -15,5 +14,7 @@ module Session
     end
     
   end
+
+  Ground::Ridge path: '/sign_up', verb: 'post', state: SignUp
   
 end

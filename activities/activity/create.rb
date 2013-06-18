@@ -1,7 +1,7 @@
 module Activity
-  Create = Ground::Ridge(path: '/activity', verb: 'post')
+  
 
-  class Create
+  class Create < Ground::State
 
     def call
       res = CreateActivity params
@@ -9,5 +9,7 @@ module Activity
     end
     
   end
+
+  Ground::Ridge path: '/activity', verb: 'post', state: Create
   
 end
