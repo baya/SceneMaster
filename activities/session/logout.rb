@@ -9,6 +9,4 @@ module Session
     
   end
 
-  Ground::Ridge path: '/logout', verb: 'get', state: Logout
-  
 end

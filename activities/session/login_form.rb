@@ -9,6 +9,4 @@ module Session
     
   end
 
-  Ground::Ridge path: '/login', verb: 'get', state: LoginForm
-  
 end  
