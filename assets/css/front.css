@@ -1,6 +1,10 @@
 .navbar-fixed-top h2{margin:4px 0;padding:0;float:left;}
 .navbar-fixed-top{margin-bottom: 10px;position:static;}
 .form-horizontal h3{margin-left: 180px;}
-.activity {margin:6px 0;}
-.activity textarea{height: 20px;width: 400px;}
+.activity {margin:3px 0; line-height: 24px;}
+.idata textarea{height: 20px;width: 330px;}
+.idata{margin-top: 15px;}
 span.label{margin:0 1px;cursor:hand;cursor:pointer;}
+.crud {margin-left: 11px;}
+.crud a {cursor:hand;cursor:pointer;text-decoration:none;margin:0 2px;}
+

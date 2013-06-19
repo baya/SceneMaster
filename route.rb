@@ -1,4 +1,5 @@
 Ground do
+  
   # session
   get   '/sign_up', Session::SignForm
   post  '/sign_up', Session::SignUp
@@ -7,12 +8,14 @@ Ground do
   match '/logout',  Session::Logout
 
   # scene
-  get  '/scenes',    Scene::Index
-  post '/scene',     Scene::Create
-  get  '/scene/new', Scene::New
-  get  '/scene/:id', Scene::Show
+  get  '/scenes',         Scene::Index
+  post '/scene',          Scene::Create
+  get  '/scene/new',      Scene::New
+  get  '/scene/:id',      Scene::Show
+  get  '/scene/:id/edit', Scene::Edit
 
   # activity
-  post '/activity', Activity::Create
+  post '/activity',        Activity::Create
+  post '/activity/delete', Activity::Delete
 
 end

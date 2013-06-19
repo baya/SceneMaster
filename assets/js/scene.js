@@ -91,4 +91,54 @@ $(function(){
     clickBtnTextToInput('action');
     clickBtnTextToInput('content');
 
+
+    function hideActivityCRUDBtns(){
+	$('.crud').hide();
+    }
+
+    function hoverActivityCRUDBtns(){
+	$('.activity').hover(
+	    
+	    function(){
+		$(this).children('.crud').show();
+	    },
+	    
+	    function(){
+		$(this).children('.crud').hide();
+	    }
+	)
+    }
+
+    hideActivityCRUDBtns();
+    hoverActivityCRUDBtns();
+
+    function trashActivity(activity_id, handler){
+	var url = '/activity/delete';
+	$.post(url, {id: activity_id}, handler, 'json')
+    }
+
+    function removeDeletedActivity(activity){
+	activity.remove();
+    }
+
+    $('.trash').bind('click', function(){
+	var res = confirm("确定删除?");
+	if(res == true){
+	    var activity = $(this).parent().parent();
+	    var activity_id = activity.children('.data').first().val();
+	    var res = '';
+	    trashActivity(activity_id, function(data){
+		var res = data.result;
+		if(res == 'success'){
+		    removeDeletedActivity(activity);
+		} else {
+		    alert('删除失败，请稍后重试');
+		}
+	    })
+	} else {
+	    return false
+	}
+
+    })
+
 })

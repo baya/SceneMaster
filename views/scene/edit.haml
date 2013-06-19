@@ -34,23 +34,21 @@
   
     %div.container
       %div#main.container-fluid
-        %a.btn.btn-warning.btn-large.pull-right{href: Scene::Edit.path(@scene[:id])} 编辑
+        %a.btn.btn-success.btn-large.pull-right{href: Scene::Show.path(@scene[:id])} 完成编辑
         %center
           %h4= @scene[:name]
         %input#scene_id.data{type: 'hidden', value: @scene[:id]}
         %ul.unstyled
           - @activities.each do |activity|
             %li.activity
+              %input.data{type: 'hidden', value: activity[:id]}
               %span.label.label-inverse.role= activity[:role]
               %span.label.action= activity[:action]
               %span.label.label-info.content= activity[:content]
+              %span.crud
+                %a.icon-plus.add
+                %a.icon-wrench.wrench
+                %a.icon-trash.trash
               
-          %li.idata
-            %input{type: 'text', name: 'scene[activities][][role]', class: 'input-small role', placeholder: '角色'}
-            %input{type: 'text', name: 'scene[activities][][action]', class: 'input-small action', placeholder: '动作'}
-            %textarea{name: 'scene[activities][][content]', class: 'content', placeholder: '内容'}
-          %li    
-            %span#add.btn.btn-inverse 增加
-
     
   

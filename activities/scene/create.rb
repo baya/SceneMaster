@@ -1,6 +1,5 @@
 module Scene
   
-
   class Create < Ground::State
 
     def call
