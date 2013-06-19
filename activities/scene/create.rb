@@ -10,6 +10,4 @@ module Scene
     
   end
 
-  Ground::Ridge path: '/scene', verb: 'post', state: Create
-  
 end

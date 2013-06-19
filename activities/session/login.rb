@@ -16,6 +16,4 @@ module Session
     
   end
 
-  Ground::Ridge path: '/login', verb: 'post', state: Login
-  
 end

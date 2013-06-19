@@ -10,6 +10,4 @@ module Activity
     
   end
 
-  Ground::Ridge path: '/activity', verb: 'post', state: Create
-  
 end

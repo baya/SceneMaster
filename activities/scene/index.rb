@@ -12,6 +12,4 @@ module Scene
 
   end
 
-  Ground::Ridge path: '/scenes', verb: 'get', state: Index
-  
 end

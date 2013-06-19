@@ -8,6 +8,4 @@ module Scene
 
   end
 
-  Ground::Ridge path: '/scene/new', verb: 'get', state: New
-  
 end

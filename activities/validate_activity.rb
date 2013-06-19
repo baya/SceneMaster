@@ -17,6 +17,5 @@ class ValidateActivity < Ground::Validate
     
     super
   end
-
   
 end

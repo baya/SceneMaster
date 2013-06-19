@@ -37,6 +37,7 @@ require 'validate_scene'
 require 'validate_activity'
 require 'validate_user'
 require 'authenticate_user'
+require 'route'
 
 module SceneMaster
   # sequel -m migrations/ postgres://pgsql:@localhost/SceneMaster_development

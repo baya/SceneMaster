@@ -8,6 +8,4 @@ module Session
     
   end
 
-  Ground::Ridge path: '/sign_up', verb: 'get', state: SignForm
-  
 end
