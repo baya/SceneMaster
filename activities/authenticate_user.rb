@@ -1,5 +1,5 @@
 class AuthenticateUser < Ground::Activity
-  include Protocol::Find
+  include Protocol::CRUD::Find
   
   data_reader :email, :password
 

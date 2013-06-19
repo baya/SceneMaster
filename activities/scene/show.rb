@@ -2,7 +2,7 @@ module Scene
 
   class Show < Ground::State
 
-    include Protocol::Find
+    include Protocol::CRUD::Find
 
     def call
       @scene = find_scene_by_id(params[:id])

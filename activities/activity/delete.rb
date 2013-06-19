@@ -2,7 +2,7 @@ module Activity
 
   class Delete < Ground::State
 
-    include Protocol::Delete
+    include Protocol::CRUD::Delete
 
     def call
       delete_activity_by_id(params[:id])

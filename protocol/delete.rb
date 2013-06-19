@@ -1,12 +1,7 @@
-module Protocol
+module Protocol::CRUD
   module Delete
+    include Protocol::CRUD
 
-    private
-
-    def db
-      SceneMaster::DB
-    end
-    
     def delete_activity_by_id(id)
       db[:activities].where(id: id).delete
     end

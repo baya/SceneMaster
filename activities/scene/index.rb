@@ -3,7 +3,7 @@ module Scene
 
   class Index < Ground::State
 
-    include Protocol::Find
+    include Protocol::CRUD::Find
 
     def call
       @scenes = find_last_scenes(20)

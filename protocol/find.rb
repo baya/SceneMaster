@@ -1,12 +1,8 @@
-module Protocol
+module Protocol::CRUD
   
   module Find
 
-    private
-    
-    def db
-      SceneMaster::DB
-    end
+    include Protocol::CRUD
 
     def find_activities_of_scene(scene)
       db[:activities].where('scene_id IN (?)', scene[:id]).order(:id)

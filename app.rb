@@ -19,6 +19,7 @@ require 'json'
 require 'logger'
 require 'bcrypt'
 
+require 'protocol/crud'
 require 'protocol/find'
 require 'protocol/delete'
 require 'scene/index'
