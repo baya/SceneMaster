@@ -151,6 +151,10 @@ $(function(){
     hideEdt();
 
     $('.wrench').bind('click', function(){
+	hideEdt();
+	hideAftActivity();
+	$('.activity > .icons').addClass('crud');
+	$('.activity > .label').show();
 	var activity = $(this).parent().parent();
 	activity.children('.label').hide();
 	activity.find('.edt').show();
@@ -185,7 +189,7 @@ $(function(){
 
 	$.post(url, data, function(data){
 	    if(data.error){
-		// 显示错误信息
+		alert('发生错误，请确认输入的数据正确');
 	    } else {
 		hideEdt();
 		renderUpdatedActivityData(activity, data);
@@ -221,6 +225,8 @@ $(function(){
     }
 
     $('.add').bind('click', function(){
+	hideAftActivity();
+	hideEdt();
 	$(this).parent().parent().next().show();
     })
 
@@ -243,7 +249,13 @@ $(function(){
 	var url = '/activity';
 
 	$.post(url, data, function(data){
-	    // 插入创建成功后的活动
+	    var activity_html = getActivityHtmlText(data);
+	    if(data.error){
+		alert('发生错误，请稍后重试');
+	    } else {
+		aft_activity.before(activity_html);
+		aft_activity.hide();
+	    }
 	}, 'json')
     })
 
