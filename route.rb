@@ -17,5 +17,6 @@ Ground do
   # activity
   post '/activity',        Activity::Create
   post '/activity/delete', Activity::Delete
+  post '/activity/update', Activity::Update
 
 end

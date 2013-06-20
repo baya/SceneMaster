@@ -42,13 +42,18 @@
           - @activities.each do |activity|
             %li.activity
               %input.data{type: 'hidden', value: activity[:id]}
-              %span.label.label-inverse.role= activity[:role]
-              %span.label.action= activity[:action]
-              %span.label.label-info.content= activity[:content]
-              %span.crud
+              %span.normal.label.label-inverse.role= activity[:role]
+              %input.edt.input-mini.role{type: 'text', value: activity[:role]}
+              %span.normal.label.action= activity[:action]
+              %input.edt.input-mini.action{type: 'text', value: activity[:action]}
+              %span.normal.label.label-info.content= activity[:content]
+              %textarea.edt.content= activity[:content]
+              %span.crud.icons
                 %a.icon-plus.add
                 %a.icon-wrench.wrench
                 %a.icon-trash.trash
+              %span
+                %button.edt.btn.btn-mini 确定
               
     
   

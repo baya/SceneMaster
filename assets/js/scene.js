@@ -1,12 +1,14 @@
 $(function(){
     $('#add').bind('click', function(){
-	validate = validates('input.role', '角色不能为空', function(item){
+	var role = findActivityItem('input.role');
+	validate = validates(role, '角色不能为空', function(item){
 	    return item.val();
 	})
 	if(!validate)
 	    return false
-	
-	validate = validates('input.action', '动作不能为空', function(item){
+
+	var action = findActivityItem('input.action');
+	validate = validates(action, '动作不能为空', function(item){
 	    return item.val();
 	})
 	if(!validate)
@@ -45,8 +47,8 @@ $(function(){
 	return html;
     }
 
-    function validates(col, msg, handler){
-	var item = findActivityItem(col);
+    function validates(item, msg, handler){
+	
 	if(handler(item)){
 	    return true;
 	} else {
@@ -90,7 +92,6 @@ $(function(){
     clickBtnTextToInput('role');
     clickBtnTextToInput('action');
     clickBtnTextToInput('content');
-
 
     function hideActivityCRUDBtns(){
 	$('.crud').hide();
@@ -140,5 +141,68 @@ $(function(){
 	}
 
     })
+
+    function hideEdt(){
+	$('input.edt').hide();
+	$('textarea.edt').hide();
+	$('button.edt').hide();
+    }
+
+    hideEdt();
+
+    $('.wrench').bind('click', function(){
+	var activity = $(this).parent().parent();
+	activity.children('.label').hide();
+	activity.find('.edt').show();
+	activity.children('.icons').removeClass('crud').hide();
+    })
+
+    $('button.edt').bind('click', function(){
+	var activity = $(this).parent().parent();
+	var activity_id = activity.find('input.data').val();
+	var role = activity.find('input.role');
+	var action = activity.find('input.action');
+	var content = activity.find('textarea.content');
+	var url = '/activity/update';
+	var data = {
+	    id: activity_id,
+	    role: role.val(),
+	    action: action.val(),
+	    content: content.val()
+	}
+
+	validate = validates(role, '角色不能为空', function(item){
+	    return item.val();
+	})
+	if(!validate)
+	    return false
+
+	validate = validates(action, '动作不能为空', function(item){
+	    return item.val();
+	})
+	if(!validate)
+	    return false
+
+	$.post(url, data, function(data){
+	    if(data.error){
+		// 显示错误信息
+	    } else {
+		hideEdt();
+		renderUpdatedActivityData(activity, data);
+		activity.children('.label').show();
+		activity.children('.icons').addClass('crud').show();
+	    }
+	}, 'json')
+    })
+
+    function renderUpdatedActivityData(activity, data){
+	var role = activity.find('.label.role');
+	var action = activity.find('.label.action');
+	var content = activity.find('.label.content');
+
+	role.text(data.role);
+	action.text(data.action);
+	content.text(data.content);
+    }
 
 })

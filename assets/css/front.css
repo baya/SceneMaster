@@ -5,6 +5,7 @@
 .idata textarea{height: 20px;width: 330px;}
 .idata{margin-top: 15px;}
 span.label{margin:0 1px;cursor:hand;cursor:pointer;}
+span.normal{cursor:default;}
 .crud {margin-left: 11px;}
 .crud a {cursor:hand;cursor:pointer;text-decoration:none;margin:0 2px;}
 
