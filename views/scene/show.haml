@@ -46,9 +46,9 @@
               %span.label.label-info.content= activity[:content]
               
           %li.idata
-            %input{type: 'text', name: 'scene[activities][][role]', class: 'input-small role', placeholder: '角色'}
-            %input{type: 'text', name: 'scene[activities][][action]', class: 'input-small action', placeholder: '动作'}
-            %textarea{name: 'scene[activities][][content]', class: 'content', placeholder: '内容'}
+            %input.input-mini.role{type: 'text', name: 'scene[activities][][role]', placeholder: '角色'}
+            %input.input-mini.action{type: 'text', name: 'scene[activities][][action]', placeholder: '动作'}
+            %textarea.content{name: 'scene[activities][][content]', placeholder: '内容'}
           %li    
             %span#add.btn.btn-inverse 增加
 

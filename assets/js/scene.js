@@ -205,4 +205,46 @@ $(function(){
 	content.text(data.content);
     }
 
+    function hideAftActivity(){
+	$('.aft-activity').hide();
+    }
+
+    hideAftActivity();
+
+    function computeActivitiesSortArray(){
+	var sort_array = [];
+	$('.activity').each(function(index, activity){
+	    sort_array[index] = $(activity).children('.data').val();
+	});
+
+	return sort_array;
+    }
+
+    $('.add').bind('click', function(){
+	$(this).parent().parent().next().show();
+    })
+
+    $('.cfm').bind('click', function(){
+	var aft_activity = $(this).parent().parent();
+	var scene_id = $('#scene_id').val();
+	var position = aft_activity.children('.data.position').val();
+	var role = aft_activity.children('.role');
+	var action = aft_activity.children('.action');
+	var content = aft_activity.children('.content');
+	var sort_array = computeActivitiesSortArray();
+	var data = {
+	    scene_id: scene_id,
+	    role: role.val(),
+	    action: action.val(),
+	    content: content.val(),
+	    position: position,
+	    sort_array: sort_array
+	};
+	var url = '/activity';
+
+	$.post(url, data, function(data){
+	    // 插入创建成功后的活动
+	}, 'json')
+    })
+
 })

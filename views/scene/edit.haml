@@ -39,7 +39,7 @@
           %h4= @scene[:name]
         %input#scene_id.data{type: 'hidden', value: @scene[:id]}
         %ul.unstyled
-          - @activities.each do |activity|
+          - @activities.each_with_index do |activity, index|
             %li.activity
               %input.data{type: 'hidden', value: activity[:id]}
               %span.normal.label.label-inverse.role= activity[:role]
@@ -54,6 +54,16 @@
                 %a.icon-trash.trash
               %span
                 %button.edt.btn.btn-mini 确定
+            %li.aft-activity
+              %input.data.position{type: 'hidden', value: index + 1}
+              %input.input-mini.role{type: 'text', placeholder: '角色'}
+              %input.input-mini.action{type: 'text', placeholder: '动作'}
+              %textarea.content{placeholder: '内容'}
+              %span
+                %button.btn.btn-mini.cfm 确定
+  
+                 
+               
               
     
   
