@@ -67,11 +67,15 @@ $(function(){
 	var action = findActivityItem('input.action');
 	var content = findActivityItem('textarea.content');
 	var scene_id = $('input#scene_id').val();
+	var sort_array = computeActivitiesSortArray();
+	var position = sort_array.length;
 	var data = {
 	    scene_id: scene_id,
 	    role: role.val(),
 	    action: action.val(),
-	    content: content.val()
+	    content: content.val(),
+	    sort_array: sort_array,
+	    position: position
 	};
 
 	return data;

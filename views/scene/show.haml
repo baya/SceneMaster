@@ -41,6 +41,7 @@
         %ul.unstyled
           - @activities.each do |activity|
             %li.activity
+              %input.data{type: 'hidden', value: activity[:id]}
               %span.label.label-inverse.role= activity[:role]
               %span.label.action= activity[:action]
               %span.label.label-info.content= activity[:content]
