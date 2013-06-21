@@ -5,6 +5,9 @@
 .idata{margin-top: 15px;}
 span.label{margin:0 1px;cursor:hand;cursor:pointer;}
 span.normal{cursor:default;}
-.crud {margin-left: 11px;}
-.crud a {cursor:hand;cursor:pointer;text-decoration:none;margin:0 2px;}
+span.icons {margin-left: 12px;}
+a.icon {cursor:hand;cursor:pointer;text-decoration:none;margin:0;}
+.icons .icon{padding:3px;margin:0 2px;}
+.icon.drag{cursor:move;}
+.activity .ph{width:14px;height:14px;margin:0;display:inline-block;}
 

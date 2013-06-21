@@ -99,17 +99,20 @@ $(function(){
 
     function hideActivityCRUDBtns(){
 	$('.crud').hide();
+	$('.ph').show();
     }
 
     function hoverActivityCRUDBtns(){
 	$('.activity').hover(
 	    
 	    function(){
-		$(this).children('.crud').show();
+		$(this).find('.crud').show();
+		$(this).find('.ph').hide();
 	    },
 	    
 	    function(){
-		$(this).children('.crud').hide();
+		$(this).find('.crud').hide();
+		$(this).find('.ph').show();
 	    }
 	)
     }
@@ -160,7 +163,7 @@ $(function(){
 	$('.activity > .icons').addClass('crud');
 	$('.activity > .label').show();
 	var activity = $(this).parent().parent();
-	activity.children('.label').hide();
+	activity.find('.label').hide();
 	activity.find('.edt').show();
 	activity.children('.icons').removeClass('crud').hide();
     })
@@ -262,5 +265,28 @@ $(function(){
 	    }
 	}, 'json')
     })
+
+    // var pre_drag_activity;
+    // // drag
+    // $('.drag').bind('mousedown', function(){
+    // 	pre_drag_activity = $(this);
+    // })
+
+    // $('.activity').bind('mouseover', function(){
+    // 	if(pre_drag_activity){
+    // 	    $(this).css({'margin-top':'24px'})
+    // 	}
+    // })
+
+    // $('.activity').bind('mouseout', function(){
+    // 	if(pre_drag_activity){
+    // 	    $(this).css({'margin-top':'0px'})
+    // 	}
+    // })
+
+    // $('.activity').bind('mouseup', function(){
+    // 	pre_drag_activity = null;
+    // })
+
 
 })

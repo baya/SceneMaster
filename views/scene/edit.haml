@@ -34,13 +34,15 @@
   
     %div.container
       %div#main.container-fluid
-        %a.btn.btn-success.btn-large.pull-right{href: Scene::Show.path(@scene[:id])} 完成编辑
+        %a.btn.btn-success.btn-large.pull-right{href: Scene::Show.path(@scene[:id])} 完成
         %center
           %h4= @scene[:name]
         %input#scene_id.data{type: 'hidden', value: @scene[:id]}
         %ul.unstyled
           - @activities.each_with_index do |activity, index|
             %li.activity
+              %a.icon.crud.icon-move.drag
+              %div.ph
               %input.data{type: 'hidden', value: activity[:id]}
               %span.normal.label.label-inverse.role= activity[:role]
               %input.edt.input-mini.role{type: 'text', value: activity[:role]}
@@ -49,9 +51,9 @@
               %span.normal.label.label-info.content= activity[:content]
               %textarea.edt.content= activity[:content]
               %span.crud.icons
-                %a.icon-plus.add
-                %a.icon-wrench.wrench
-                %a.icon-trash.trash
+                %a.icon.icon-plus.add
+                %a.icon.icon-wrench.wrench
+                %a.icon.icon-trash.trash
               %span
                 %button.edt.btn.btn-mini 确定
             %li.aft-activity
