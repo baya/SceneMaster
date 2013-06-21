@@ -266,27 +266,53 @@ $(function(){
 	}, 'json')
     })
 
-    // var pre_drag_activity;
-    // // drag
-    // $('.drag').bind('mousedown', function(){
-    // 	pre_drag_activity = $(this);
-    // })
+    var pre_drag_activity;
+    // drag
+    $('.drag').bind('mousedown', function(){
+    	pre_drag_activity = $(this).parent();
+	$('.insert-ph').show();
+	// disable text select
+	return false;
+    })
 
-    // $('.activity').bind('mouseover', function(){
-    // 	if(pre_drag_activity){
-    // 	    $(this).css({'margin-top':'24px'})
-    // 	}
-    // })
+    function getHowToInsert(drage_a, place_a, sort_array){
+	var drage_a_num = drage_a.find('.data').val();
+	var place_a_num = place_a.find('.data').val();
+	// up drage
+	if(sort_array.indexOf(drage_a_num) > sort_array.indexOf(place_a_num)){
+	    return 'before'
+	// down drage    
+	} else {
+	    return 'after'
+	}
+    }
 
-    // $('.activity').bind('mouseout', function(){
-    // 	if(pre_drag_activity){
-    // 	    $(this).css({'margin-top':'0px'})
-    // 	}
-    // })
+    $('.activity').bind('mouseup', function(){
+	var sort_array = computeActivitiesSortArray();
+	var hti = getHowToInsert(pre_drag_activity, $(this), sort_array);
+	$(this)[hti](pre_drag_activity.clone(true)[0]);
+	pre_drag_activity.remove();
+    	pre_drag_activity = null;
 
-    // $('.activity').bind('mouseup', function(){
-    // 	pre_drag_activity = null;
-    // })
+	saveSortArrayToServer();
+    })
+
+    function saveSortArrayToServer(){
+	var sort_array = computeActivitiesSortArray();
+	var scene_id = $('#scene_id').val();
+	var url = '/sort_array/save';
+	var data = {
+	    scene_id: scene_id,
+	    sort_array: sort_array
+	};
+	$.post(url, data, function(data){
+	    if(data.error){
+		alert('发生错误，请稍后再试');
+	    } else {
+		// do nothing
+	    }
+	}, 'json');
+    }
 
 
 })

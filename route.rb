@@ -19,4 +19,7 @@ Ground do
   post '/activity/delete', Activity::Delete
   post '/activity/update', Activity::Update
 
+  # sort_array
+  post '/sort_array/save', SortArray::Save
+
 end

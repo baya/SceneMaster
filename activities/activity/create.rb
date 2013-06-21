@@ -15,7 +15,7 @@ module Activity
         if sort_array
           update_sort_array(sort_array[:id], sort_array_data)
         else
-          create_sort_array(sort_array_data)
+          CreateSortArray params.merge(:sort_array_data => sort_array_data)
         end
         
         json activity.to_json
@@ -26,14 +26,6 @@ module Activity
 
     def position
       params[:position].to_i
-    end
-
-    def update_sort_array(id, sort_array_data)
-      db[:sort_arrays].where(id: id).update(content: sort_array_data.join(','))
-    end
-
-    def create_sort_array(sort_array_data)
-      CreateSortArray params.merge(:sort_array_data => sort_array_data)
     end
 
   end
