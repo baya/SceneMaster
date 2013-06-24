@@ -6,8 +6,14 @@ module Scene
     include Protocol::CRUD::Find
 
     def call
-      @scenes = find_last_scenes(20)
+      @scenes = find_all_public_scenes
       haml 'scene/index'
+    end
+
+    private
+
+    def find_all_public_scenes
+      db[:scenes].where(pub: true).order(Sequel.desc :id)
     end
 
   end

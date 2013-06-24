@@ -1,11 +1,18 @@
 module Activity
   
   class Create < Ground::State
+    
     include Protocol::CRUD::Find
     include Protocol::CRUD::Update
+    include Protocol::Current
 
     def call
       errors = ValidateActivity params
+      return unauthorized if current_user.nil?
+      
+      @scene = current_scene(params[:scene_id])
+      return forbid if @scene.nil?
+
       if errors.size > 0
         json({error: errors}.to_json)
       else
@@ -21,6 +28,7 @@ module Activity
         
         json activity.to_json
       end
+      
     end
 
   end

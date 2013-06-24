@@ -36,18 +36,21 @@
         %div.content
           %center
             %h4 创建场景
-          %form{action: Scene::Create.path, method: 'post'}
+          %form{action: Scene::Create.path, method: 'post', class:'scene'}
             %div
+              %input{type:'hidden', name:'scene[user_id]', value:current_user[:id]}
+            %div.ipt
               %label.control-label 场景名
               %input{type: 'text', name: 'scene[name]'}
-            %div.activity
-              %label.control-label 活动
-              %input.input-mini{type: 'text', name: 'scene[activities][][role]', placeholder: '角色'}
-              %input.input-mini{type: 'text', name: 'scene[activities][][action]', placeholder: '动作'}
-              %textarea{name: 'scene[activities][][content]', placeholder: '内容'} 
-
-
-            %div
+            %div.ipt
+              %label.control-label 场景描述
+              %textarea{name: 'scene[description]'}
+            %div.rbs
+              %label.radio.inline{for: '_scene_pub_1'} 公开
+              %input{type:'radio', name:'scene[pub]', value: 1,  class: 'rb', id: '_scene_pub_1'}
+              %label.radio.inline{for: '_scene_pub_0'} 私有
+              %input{type:'radio', name:'scene[pub]', value: 0, class: 'rb', id: '_scene_pub_0'}
+            %div.sbm
               %input{type: 'submit', value: '提交', class: 'btn'}
 
 

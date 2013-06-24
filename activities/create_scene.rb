@@ -1,27 +1,28 @@
 class CreateScene < Ground::Activity
 
-  data_reader :name, :activities
+  include Protocol::CRUD
+
+  data_reader :name, :description, :pub, :user_id
+
+  def initialize(data)
+    super
+    @pub = data[:pub] == '1' ? true : false
+  end
 
   def call
-    errors = ValidateScene(name: name)
-    return errors if errors.size > 0
-    scene_id = db[:scenes].insert(name: name)
-    activities.each {|activity|
-      errors = ValidateActivity activity
-      next if errors.size > 0
-      db[:activities].insert(   role: activity[:role],
-                                action: activity[:action],
-                                content: activity[:content],
-                                scene_id: scene_id
-                                )
-    }
-    scene_id
+    scene_id = db[:scenes].insert(scene)
+    scene.merge(id: scene_id)
   end
 
   private
-  
-  def db
-    SceneMaster::DB
+
+  def scene
+    @scene ||= {
+      name: name,
+      description: description,
+      pub: pub,
+      user_id: user_id
+    }
   end
 
 end

@@ -37,6 +37,7 @@
         %a.btn.btn-warning.btn-large.pull-right{href: Scene::Edit.path(@scene[:id])} 编辑
         %center
           %h4= @scene[:name]
+          %p= @scene[:description]  
         %input#scene_id.data{type: 'hidden', value: @scene[:id]}
         %ul.unstyled
           - @activities.each do |activity|
