@@ -7,9 +7,8 @@ module Activity
     include Protocol::Current
 
     def call
-      errors = ValidateActivity params
       return unauthorized if current_user.nil?
-      
+      errors = ValidateActivity params
       @scene = current_scene(params[:scene_id])
       return forbid if @scene.nil?
 
