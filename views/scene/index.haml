@@ -16,7 +16,7 @@
         %div.container
           %h2 场景大师
           %ul.nav.pull-right
-            - if `current_user.nil?
+            - if current_user.nil?
               %li.first
                 %a{href: Session::SignForm.path} 注册
               %li.last
