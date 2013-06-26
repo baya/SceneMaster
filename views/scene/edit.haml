@@ -16,16 +16,16 @@
         %div.container
           %h2 场景大师
           %ul.nav.pull-right
-            - if session[:user_email].nil?
+            - if current_user.nil?
               %li.first
                 %a{href: Session::SignForm.path} 注册
               %li.last
-                %a{href: ''} 登录
+                %a{href: Session::LoginForm.path} 登录
             - else
               %ul.nav.pull-right
                 %li.dropdown#user_menu
                   %a.dropdown-toggle{'data-toggle' => 'dropdown', 'href' => '#user_menu'}
-                    = session[:user_email].split('@')[0] 
+                    = current_user[:name]
                     %b.caret
                   %ul.dropdown-menu
                     %li.last
@@ -37,6 +37,7 @@
         %a.btn.btn-success.btn-large.pull-right{href: Scene::Show.path(@scene[:id])} 完成
         %center
           %h4= @scene[:name]
+          %p= @scene[:description]
         %input#scene_id.data{type: 'hidden', value: @scene[:id]}
         %ul.unstyled
           - @activities.each_with_index do |activity, index|
