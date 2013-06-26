@@ -22,7 +22,7 @@
           %form.form-horizontal{action: Session::SignUp.path, method: 'post'}
             %h3 注册
             %div.control-group
-              %label.control-label 邮箱
+              %label.control-label 用户名
               %div.controls
                 %input{type: 'text', name: 'user[name]'}
             %div.control-group
@@ -32,7 +32,7 @@
             %div.control-group
               %label.control-label 确认密码
               %div.controls
-                %input{type: 'password', name: 'user[password_confirm]'}
+                %input{type: 'password', name: 'user[password_confirmation]'}
             %div.control-group
               %div.controls
                 %input{type: 'submit', value: '注册', class: 'btn'}

@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 class ValidateUser < Ground::Validate
-  data_reader :email, :password, :password_confirmation
+  include Protocol::CRUD
+  
+  data_reader :name, :password, :password_confirmation
 
   def call
-    validates :email, '邮箱不能为空' do
-      email.length > 0
+    validates :name, '用户名不能为空' do
+      name.length > 0
+    end
+
+    validates :name, '用户名已经被注册' do
+      db[:users].where(name: name).first.nil?
     end
 
     validates :password, '密码不能为空' do

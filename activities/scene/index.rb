@@ -4,6 +4,7 @@ module Scene
   class Index < Ground::State
 
     include Protocol::CRUD::Find
+    include Protocol::Current
 
     def call
       @scenes = find_all_public_scenes

@@ -1,10 +1,10 @@
 class AuthenticateUser < Ground::Activity
   include Protocol::CRUD::Find
   
-  data_reader :email, :password
+  data_reader :name, :password
 
   def call
-    user = find_user_by(:email, email)
+    user = find_user_by(:name, name)
     return user if user and password_match?(user)
   end
 

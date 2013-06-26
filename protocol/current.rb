@@ -3,7 +3,7 @@ module Protocol
   module Current
 
     def current_user
-      db[:users].where(id: session[:user_id]).first
+      @current_user ||= db[:users].where(id: session[:user_id]).first
     end
 
     def current_scene(scene_id)
