@@ -97,6 +97,21 @@ $(function(){
     clickBtnTextToInput('action');
     clickBtnTextToInput('content');
 
+    function hoverSceneIcons(){
+	$('.node').hover(
+	    function(){
+		$(this).find('.icons').show();
+		$(this).find('.ph').hide();
+	    },
+	    function(){
+		$(this).find('.icons').hide();
+		$(this).find('.ph').show();
+	    }
+	)
+    }
+
+    hoverSceneIcons();
+
     function hideActivityCRUDBtns(){
 	$('.crud').hide();
 	$('.ph').show();
@@ -107,15 +122,14 @@ $(function(){
 	    
 	    function(){
 		$(this).find('.crud').show();
-		$(this).find('.ph').hide();
 	    },
 	    
 	    function(){
 		$(this).find('.crud').hide();
-		$(this).find('.ph').show();
 	    }
 	)
     }
+
 
     hideActivityCRUDBtns();
     hoverActivityCRUDBtns();
