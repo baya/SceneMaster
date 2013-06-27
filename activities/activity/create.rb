@@ -16,7 +16,9 @@ module Activity
         json({error: errors}.to_json)
       else
         activity = CreateActivity params
-        sort_array_data = params[:sort_array].insert(params[:position].to_i, activity[:id])
+        sort_array = params[:sort_array] || []
+        position = params[:position].to_i
+        sort_array_data = sort_array.insert(position, activity[:id])
         
         sort_array = find_sort_array_by_scene_id(params[:scene_id])
         if sort_array

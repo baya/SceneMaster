@@ -302,6 +302,8 @@ $(function(){
     }
 
     $('.activity').bind('mouseup', function(){
+	if(!pre_drag_activity)
+	    return false
 	var sort_array = computeActivitiesSortArray();
 	var hti = getHowToInsert(pre_drag_activity, $(this), sort_array);
 	$(this)[hti](pre_drag_activity.clone(true)[0]);
