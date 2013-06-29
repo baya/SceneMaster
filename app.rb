@@ -12,44 +12,17 @@ $LOAD_PATH.unshift activity_dir unless $LOAD_PATH.include?(activity_dir)
 
 require 'bundler/setup'
 require 'ground'
-require 'rack'
-require 'haml'
-require 'tilt'
-require 'sequel'
-require 'json'
 require 'logger'
-require 'bcrypt'
 
-require 'protocol/crud'
-require 'protocol/find'
-require 'protocol/delete'
-require 'protocol/update'
-require 'protocol/sort'
-require 'protocol/current'
-require 'scene/index'
-require 'scene/new'
-require 'scene/create'
-require 'scene/show'
-require 'scene/edit'
-require 'activity/create'
-require 'activity/delete'
-require 'activity/update'
-require 'session/sign_form'
-require 'session/sign_up'
-require 'session/login_form'
-require 'session/login'
-require 'session/logout'
-require 'sort_array/save'
-require 'create_scene'
-require 'create_activity'
-require 'update_activity'
-require 'create_sort_array'
-require 'create_user'
-require 'validate_scene'
-require 'validate_activity'
-require 'validate_user'
-require 'authenticate_user'
-require 'sort_activities'
+Bundler.require(:default)
+
+def load_rbfiles(dir)
+  files = File.join(dir, '**', '*.rb')
+  Dir.glob(files).each {|file| require file}
+end
+
+load_rbfiles('protocol')
+load_rbfiles('activities')
 require 'route'
 
 module SceneMaster
