@@ -97,15 +97,19 @@ $(function(){
     clickBtnTextToInput('action');
     clickBtnTextToInput('content');
 
-    function hoverSceneIcons(){
+    function hoverNodeIcons(){
 	$('.node').hover(
 	    function(){
-		$(this).find('.icons').show();
-		$(this).find('.ph').show();
+		var icons = $(this).find('.icons');
+		icons.show();
+		if(icons.first().length > 0)
+  		  $(this).find('.ph').show();
 	    },
 	    function(){
-		$(this).find('.icons').hide();
-		$(this).find('.ph').hide();
+		var icons = $(this).find('.icons');
+		icons.hide();
+		if(icons.first().length > 0)
+  		  $(this).find('.ph').hide();
 	    }
 	)
     }
@@ -117,6 +121,7 @@ $(function(){
 	var node = $(this).parent().parent();
 	node.find('.edt').show();
 	node.find('.t').hide();
+	node.find('.ph').hide();
 	node.find('.icons').removeClass('icons').hide();
     });
 
@@ -137,15 +142,17 @@ $(function(){
 		alert('发生错误，请确认输入的数据正确');
 	    } else {
 		node.find('.edt').hide();
-		renderUpdatedActivityData(activity, data);
-		activity.children('.label').show();
-		activity.children('.icons').addClass('crud').show();
+		var data_name = node.find('.t').attr('data-name')
+		node.find('.t').text(data[data_name]);
+		node.find('.t').show();
+		node.find('.crud').addClass('icons').hide();
+		node.find('.ph').hide();
 	    }
 	}, 'json');
 	    
     })
 
-    hoverSceneIcons();
+    hoverNodeIcons();
 
     function hideActivityCRUDBtns(){
 	$('.activity > .crud').hide();
