@@ -10,6 +10,7 @@ a.icon {cursor:hand;cursor:pointer;text-decoration:none;margin:0;}
 .icons .icon{padding:3px;margin:0 2px;}
 .icon.drag{cursor:move;}
 .activity .ph{width:14px;height:14px;margin:0;display:inline-block;}
+.node .ph{width:36px;height:14px;margin:0;display:inline-block;}
 .scene .radio{padding-left:0;margin-bottom:2px;}
 .scene .rb{margin-right: 10px;}
 .scene .ipt{margin-bottom: 3px;}

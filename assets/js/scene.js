@@ -101,20 +101,55 @@ $(function(){
 	$('.node').hover(
 	    function(){
 		$(this).find('.icons').show();
-		$(this).find('.ph').hide();
+		$(this).find('.ph').show();
 	    },
 	    function(){
 		$(this).find('.icons').hide();
-		$(this).find('.ph').show();
+		$(this).find('.ph').hide();
 	    }
 	)
     }
 
+    $('.node > .ph').hide();
+    $('.node > .icons').hide();
+
+    $('.node').find('.wrench').bind('click', function(){
+	var node = $(this).parent().parent();
+	node.find('.edt').show();
+	node.find('.t').hide();
+	node.find('.icons').removeClass('icons').hide();
+    });
+
+    $('.node').find('button.edt.confirm').bind('click', function(){
+	var node = $(this).parent().parent();
+	var scene_id = $('#scene_id').val();
+	var name = node.find('.name').val();
+	var description = node.find('.description').val();
+	var url = '/scene/' + scene_id + '/update';
+
+	var data = {
+	    name: name,
+	    description: description
+	}
+
+	$.post(url, data, function(data){
+	    if(data.error){
+		alert('发生错误，请确认输入的数据正确');
+	    } else {
+		node.find('.edt').hide();
+		renderUpdatedActivityData(activity, data);
+		activity.children('.label').show();
+		activity.children('.icons').addClass('crud').show();
+	    }
+	}, 'json');
+	    
+    })
+
     hoverSceneIcons();
 
     function hideActivityCRUDBtns(){
-	$('.crud').hide();
-	$('.ph').show();
+	$('.activity > .crud').hide();
+	$('.activity > .ph').show();
     }
 
     function hoverActivityCRUDBtns(){
@@ -122,10 +157,12 @@ $(function(){
 	    
 	    function(){
 		$(this).find('.crud').show();
+		$(this).find('.ph').hide();
 	    },
 	    
 	    function(){
 		$(this).find('.crud').hide();
+		$(this).find('.ph').show();
 	    }
 	)
     }
@@ -171,7 +208,7 @@ $(function(){
 
     hideEdt();
 
-    $('.wrench').bind('click', function(){
+    $('.activity').find('.wrench').bind('click', function(){
 	hideEdt();
 	hideAftActivity();
 	$('.activity > .icons').addClass('crud');
@@ -182,7 +219,7 @@ $(function(){
 	activity.children('.icons').removeClass('crud').hide();
     })
 
-    $('button.edt').bind('click', function(){
+    $('.activity').find('button.edt').bind('click', function(){
 	var activity = $(this).parent().parent();
 	var activity_id = activity.find('input.data').val();
 	var role = activity.find('input.role');
@@ -212,7 +249,7 @@ $(function(){
 	    if(data.error){
 		alert('发生错误，请确认输入的数据正确');
 	    } else {
-		hideEdt();
+		activity.find('.edt').hide();
 		renderUpdatedActivityData(activity, data);
 		activity.children('.label').show();
 		activity.children('.icons').addClass('crud').show();

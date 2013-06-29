@@ -8,11 +8,12 @@ Ground do
   match '/logout',  Session::Logout
 
   # scene
-  get  '/scenes',         Scene::Index
-  post '/scene',          Scene::Create
-  get  '/scene/new',      Scene::New
-  get  '/scene/:id',      Scene::Show
-  get  '/scene/:id/edit', Scene::Edit
+  get  '/scenes',           Scene::Index
+  post '/scene',            Scene::Create
+  get  '/scene/new',        Scene::New
+  get  '/scene/:id',        Scene::Show
+  get  '/scene/:id/edit',   Scene::Edit
+  post '/scene/:id/update', Scene::Update
 
   # activity
   post '/activity',        Activity::Create

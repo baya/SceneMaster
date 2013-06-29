@@ -39,13 +39,20 @@
           %div.node
             %div.ph
             %h4.t= @scene[:name]
+            %input.edt.name{type: 'text', value: @scene[:name]}
             %span.crud.icons
               %a.icon.icon-wrench.wrench
+            %span
+              %button.edt.btn.btn-mini.confirm 确定
+    
           %div.node
             %div.ph
             %p.t= @scene[:description]
+            %textarea.edt.description= @scene[:description]
             %span.crud.icons
               %a.icon.icon-wrench.wrench
+            %span
+              %button.edt.btn.btn-mini.confirm 确定
 
         %input#scene_id.data{type: 'hidden', value: @scene[:id]}
         %ul.unstyled
