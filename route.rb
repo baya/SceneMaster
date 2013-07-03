@@ -26,5 +26,8 @@ Ground do
   # sort_array
   post '/sort_array/save', SortArray::Save
 
+  # my
+  get '/my/scenes', My::Scenes
+
 end
 
