@@ -1,4 +1,7 @@
 Ground do
+
+  # root
+  get '/', Index
   
   # session
   get   '/sign_up', Session::SignForm
@@ -24,3 +27,4 @@ Ground do
   post '/sort_array/save', SortArray::Save
 
 end
+
