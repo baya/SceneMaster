@@ -1,6 +1,6 @@
 -# coding: UTF-8
 %div#main.container-fluid
-  %a.btn.btn-success.btn-large.pull-right{href: Scene::Show.path(@scene[:id])} 完成
+  %a.btn.btn-inverse.btn-large.pull-right{href: Scene::Show.path(@scene[:id])} 完成
   %center
     %div.node
       %div.ph
@@ -31,7 +31,7 @@
         %input.edt.input-mini.role{type: 'text', value: activity[:role]}
         %span.normal.label.action= activity[:action]
         %input.edt.input-mini.action{type: 'text', value: activity[:action]}
-        %span.normal.label.label-info.content= activity[:content]
+        %span.normal.label.label-inverse.content= activity[:content]
         %textarea.edt.content= activity[:content]
         %span.crud.icons
           %a.icon.icon-plus.add

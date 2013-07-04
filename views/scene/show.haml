@@ -1,7 +1,7 @@
 -# coding: UTF-8
 %div.container
   %div#main.container-fluid
-    %a.btn.btn-warning.btn-large.pull-right{href: Scene::Edit.path(@scene[:id])} 编辑
+    %a.btn.btn-inverse.btn-large.pull-right{href: Scene::Edit.path(@scene[:id])} 编辑
     %center
       %h4= @scene[:name]
       %p= @scene[:description]  
@@ -12,7 +12,7 @@
           %input.data{type: 'hidden', value: activity[:id]}
           %span.label.label-inverse.role= activity[:role]
           %span.label.action= activity[:action]
-          %span.label.label-info.content= activity[:content]
+          %span.label.label-inverse.content= activity[:content]
 
       %li.idata
         %input.input-mini.role{type: 'text', name: 'scene[activities][][role]', placeholder: '角色'}

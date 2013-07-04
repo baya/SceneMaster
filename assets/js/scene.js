@@ -41,7 +41,7 @@ $(function(){
 	var html = "<li class=\'activity\'>" +
 	    "<span class='label label-inverse role'>" + data.role + "</span>" +
 	    "<span class='label action'>" + data.action + "</span>" +
-	    "<span class='label label-info content'>" + data.content + "</span>" +
+	    "<span class='label label-inverse content'>" + data.content + "</span>" +
 	    "</li>";
 
 	return html;

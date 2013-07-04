@@ -12,10 +12,10 @@
       
   %body{'data-offset' => 50}
     %div.navbar.navbar-fixed-top
-      %div.navbar-inner
+      %div.navbar-inner.b0
         %div.container
           %h2
-            %a{href: '/scenes'} 场景大师
+            %a.m0{href: '/scenes'} 场景
           %ul.nav.pull-right
             - if current_user.nil?
               %li.first
@@ -28,11 +28,11 @@
                   %a.dropdown-toggle{'data-toggle' => 'dropdown', 'href' => '#user_menu'}
                     = current_user[:name]
                     %b.caret
-                  %ul.dropdown-menu
+                  %ul.dropdown-menu.b0
                     %li
-                      %a{href: ''} 我的场景
+                      %a.m0{href: My::Scenes.path} 我的场景
                     %li.last
-                      %a{href: Session::Logout.path} 退出
+                      %a.m0{href: Session::Logout.path} 退出
                       
     %div.container
       = yield if block_given?
