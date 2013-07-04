@@ -1,58 +1,25 @@
 -# coding: UTF-8
-!!!
-%html
-  %head
-    %title 场景大师
-    %link{href: '/assets/css/bootstrap.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
-    %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
-    %link{href: '/assets/css/front.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
-    %script{type: 'text/javascript', src: '/assets/js/jquery-2.0.2.min.js'}
-    %script{type: 'text/javascript', src: '/assets/js/bootstrap.min.js'}  
-    %script{type: 'text/javascript', src: '/assets/js/scene.js'}
-  
-  %body{'data-offset' => 50}
-    %div.navbar.navbar-fixed-top
-      %div.navbar-inner
-        %div.container
-          %h2 场景大师
-          %ul.nav.pull-right
-            - if current_user.nil?
-              %li.first
-                %a{href: Session::SignForm.path} 注册
-              %li.last
-                %a{href: Session::LoginForm.path} 登录
-            - else
-              %ul.nav.pull-right
-                %li.dropdown#user_menu
-                  %a.dropdown-toggle{'data-toggle' => 'dropdown', 'href' => '#user_menu'}
-                    = current_user[:name] 
-                    %b.caret
-                  %ul.dropdown-menu
-                    %li.last
-                      %a{href: Session::Logout.path} 退出
+%div.container
+  %div#main.container-fluid
+    %a.btn.btn-warning.btn-large.pull-right{href: Scene::Edit.path(@scene[:id])} 编辑
+    %center
+      %h4= @scene[:name]
+      %p= @scene[:description]  
+    %input#scene_id.data{type: 'hidden', value: @scene[:id]}
+    %ul.unstyled
+      - @activities.each do |activity|
+        %li.activity
+          %input.data{type: 'hidden', value: activity[:id]}
+          %span.label.label-inverse.role= activity[:role]
+          %span.label.action= activity[:action]
+          %span.label.label-info.content= activity[:content]
 
-  
-    %div.container
-      %div#main.container-fluid
-        %a.btn.btn-warning.btn-large.pull-right{href: Scene::Edit.path(@scene[:id])} 编辑
-        %center
-          %h4= @scene[:name]
-          %p= @scene[:description]  
-        %input#scene_id.data{type: 'hidden', value: @scene[:id]}
-        %ul.unstyled
-          - @activities.each do |activity|
-            %li.activity
-              %input.data{type: 'hidden', value: activity[:id]}
-              %span.label.label-inverse.role= activity[:role]
-              %span.label.action= activity[:action]
-              %span.label.label-info.content= activity[:content]
-              
-          %li.idata
-            %input.input-mini.role{type: 'text', name: 'scene[activities][][role]', placeholder: '角色'}
-            %input.input-mini.action{type: 'text', name: 'scene[activities][][action]', placeholder: '动作'}
-            %textarea.content{name: 'scene[activities][][content]', placeholder: '内容'}
-          %li    
-            %span#add.btn.btn-inverse 增加
+      %li.idata
+        %input.input-mini.role{type: 'text', name: 'scene[activities][][role]', placeholder: '角色'}
+        %input.input-mini.action{type: 'text', name: 'scene[activities][][action]', placeholder: '动作'}
+        %textarea.content{name: 'scene[activities][][content]', placeholder: '内容'}
+      %li    
+        %span#add.btn.btn-inverse 增加
 
     
   

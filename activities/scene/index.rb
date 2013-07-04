@@ -8,13 +8,19 @@ module Scene
 
     def call
       @scenes = find_all_public_scenes
-      haml 'scene/index'
+      html content
     end
 
     private
 
     def find_all_public_scenes
       db[:scenes].where(pub: true).order(Sequel.desc :id)
+    end
+
+    def content
+      haml 'layout/app' do
+        haml 'scene/index'
+      end
     end
 
   end

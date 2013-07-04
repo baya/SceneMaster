@@ -7,7 +7,15 @@ module Scene
 
     def call
       return unauthorized if current_user.nil?
-      haml 'scene/new'
+      html content
+    end
+
+    private
+
+    def content
+      haml 'layout/app' do
+        haml 'scene/new'
+      end
     end
 
   end

@@ -1,57 +1,24 @@
 -# coding: UTF-8
-!!!
-%html
-  %head
-    %title 场景大师
-    %link{href: '/assets/css/bootstrap.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
-    %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
-    %link{href: '/assets/css/front.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
-    %script{type: 'text/javascript', src: '/assets/js/jquery-2.0.2.min.js'}
-    %script{type: 'text/javascript', src: '/assets/js/bootstrap.min.js'}    
-    %script{type: 'text/javascript', src: '/assets/js/scene.js'}
-
-  %body{'data-offset' => 50}
-    %div.navbar.navbar-fixed-top
-      %div.navbar-inner
-        %div.container
-          %h2 场景大师
-          %ul.nav.pull-right
-            - if session[:user_email].nil?
-              %li.first
-                %a{href: Session::SignForm.path} 注册
-              %li.last
-                %a{href: ''} 登录
-            - else
-              %ul.nav.pull-right
-                %li.dropdown#user_menu
-                  %a.dropdown-toggle{'data-toggle' => 'dropdown', 'href' => '#user_menu'}
-                    = session[:user_email].split('@')[0] 
-                    %b.caret
-                  %ul.dropdown-menu
-                    %li.last
-                      %a{href: ''} 退出
-
-    %div.container
-      %div#main.container-fluid
-        %div.content
-          %center
-            %h4 创建场景
-          %form{action: Scene::Create.path, method: 'post', class:'scene'}
-            %div
-              %input{type:'hidden', name:'scene[user_id]', value:current_user[:id]}
-            %div.ipt
-              %label.control-label 场景名
-              %input{type: 'text', name: 'scene[name]'}
-            %div.ipt
-              %label.control-label 场景描述
-              %textarea{name: 'scene[description]'}
-            %div.rbs
-              %label.radio.inline{for: '_scene_pub_1'} 公开
-              %input{type:'radio', name:'scene[pub]', value: 1,  class: 'rb', id: '_scene_pub_1'}
-              %label.radio.inline{for: '_scene_pub_0'} 私有
-              %input{type:'radio', name:'scene[pub]', value: 0, class: 'rb', id: '_scene_pub_0'}
-            %div.sbm
-              %input{type: 'submit', value: '提交', class: 'btn'}
+%div#main.container-fluid
+  %div.content
+    %center
+      %h4 创建场景
+    %form{action: Scene::Create.path, method: 'post', class:'scene'}
+      %div
+        %input{type:'hidden', name:'scene[user_id]', value:current_user[:id]}
+      %div.ipt
+        %label.control-label 场景名
+        %input{type: 'text', name: 'scene[name]'}
+      %div.ipt
+        %label.control-label 场景描述
+        %textarea{name: 'scene[description]'}
+      %div.rbs
+        %label.radio.inline{for: '_scene_pub_1'} 公开
+        %input{type:'radio', name:'scene[pub]', value: 1,  class: 'rb', id: '_scene_pub_1'}
+        %label.radio.inline{for: '_scene_pub_0'} 私有
+        %input{type:'radio', name:'scene[pub]', value: 0, class: 'rb', id: '_scene_pub_0'}
+      %div.sbm
+        %input{type: 'submit', value: '提交', class: 'btn'}
 
 
   
