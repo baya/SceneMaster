@@ -314,11 +314,15 @@ $(function(){
 	var url = '/activity';
 
 	$.post(url, data, function(data){
-	    var activity_html = getActivityHtmlText(data);
+	    var new_activity = aft_activity.prev().clone(true);
 	    if(data.error){
 		alert('发生错误，请稍后重试');
 	    } else {
-		aft_activity.before(activity_html);
+		aft_activity.before(new_activity);
+		new_activity.find('.data').val(data.id);
+		new_activity.find('.role').text(data.role);
+		new_activity.find('.action').text(data.action);
+		new_activity.find('.content').text(data.content);
 		aft_activity.hide();
 	    }
 	}, 'json')

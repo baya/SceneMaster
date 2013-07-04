@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title 场景大师
+    %title 场景
     %link{href: '/assets/css/bootstrap.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
     %link{href: '/assets/css/bootstrap-responsive.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}
     %link{href: '/assets/css/front.css', rel: 'stylesheet', type: 'text/css', media: 'screen'}  
@@ -9,7 +9,8 @@
     %div.navbar.navbar-fixed-top
       %div.navbar-inner.b0
         %div.container
-          %h2 场景大师
+          %h2
+            %a.m0{href: Scene::Index.path} 场景
           %ul.nav.pull-right
             %li.first
               %a.current{href: Session::SignForm.path} 注册

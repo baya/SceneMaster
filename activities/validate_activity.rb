@@ -11,10 +11,6 @@ class ValidateActivity < Ground::Validate
       action.length > 0
     end
     
-    validates :content, '内容不能为空' do
-      content.length > 0
-    end
-    
     super
   end
   

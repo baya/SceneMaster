@@ -1,6 +1,6 @@
 -# coding: UTF-8
 %div#main.container-fluid
-  %a.btn.btn-inverse.btn-large.pull-right{href: Scene::Show.path(@scene[:id])} 完成
+  %a.btn.btn-primary.btn-large.pull-right{href: Scene::Show.path(@scene[:id])} 完成
   %center
     %div.node
       %div.ph
@@ -9,7 +9,7 @@
       %span.crud.icons
         %a.icon.icon-wrench.wrench
       %span
-        %button.edt.btn.btn-mini.confirm 确定
+        %button.edt.btn.btn-mini.btn-primary.confirm 确定
 
     %div.node
       %div.ph
@@ -18,7 +18,7 @@
       %span.crud.icons
         %a.icon.icon-wrench.wrench
       %span
-        %button.edt.btn.btn-mini.confirm 确定
+        %button.edt.btn.btn-mini.btn-primary.confirm 确定
 
   %input#scene_id.data{type: 'hidden', value: @scene[:id]}
   %ul.unstyled
@@ -31,21 +31,22 @@
         %input.edt.input-mini.role{type: 'text', value: activity[:role]}
         %span.normal.label.action= activity[:action]
         %input.edt.input-mini.action{type: 'text', value: activity[:action]}
-        %span.normal.label.label-inverse.content= activity[:content]
+        - if not activity[:content] == ''
+          %span.normal.label.label-inverse.content= activity[:content]
         %textarea.edt.content= activity[:content]
         %span.crud.icons
           %a.icon.icon-plus.add
           %a.icon.icon-wrench.wrench
           %a.icon.icon-trash.trash
         %span
-          %button.edt.btn.btn-mini 确定
+          %button.edt.btn.btn-mini.btn-primary 确定
       %li.aft-activity
         %input.data.position{type: 'hidden', value: index + 1}
         %input.input-mini.role{type: 'text', placeholder: '角色'}
         %input.input-mini.action{type: 'text', placeholder: '动作'}
         %textarea.content{placeholder: '内容'}
         %span
-          %button.btn.btn-mini.cfm 确定
+          %button.btn.btn-mini.btn-primary.cfm 确定
   
                  
                
