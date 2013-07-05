@@ -1,3 +1,4 @@
+a, .m0{color:rgb(54,37,17)}
 .navbar-fixed-top h2{margin:4px 0;padding:0;float:left;}
 .navbar-fixed-top{margin-bottom: 10px;position:static;}
 .form-horizontal h3{margin-left: 180px;}
@@ -23,3 +24,4 @@ a.icon {cursor:hand;cursor:pointer;text-decoration:none;margin:0;}
 .navbar .nav li a.m0{color:rgb(54,37,17)}
 .navbar-inner{border:none;}
 .aft-activity{margin-left: 18px;}
+.navbar .nav li a{color:rgb(54,37,17);text-shadow:none;}

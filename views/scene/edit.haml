@@ -27,13 +27,13 @@
         %a.icon.crud.icon-move.drag
         %div.ph
         %input.data{type: 'hidden', value: activity[:id]}
-        %span.normal.label.label-inverse.role= activity[:role]
+        %span.normal.label.label-inverse.role=h activity[:role]
         %input.edt.input-mini.role{type: 'text', value: activity[:role]}
-        %span.normal.label.action= activity[:action]
+        %span.normal.label.action=h activity[:action]
         %input.edt.input-mini.action{type: 'text', value: activity[:action]}
         - if not activity[:content] == ''
-          %span.normal.label.label-inverse.content= activity[:content]
-        %textarea.edt.content= activity[:content]
+          %span.normal.label.label-inverse.content=h activity[:content]
+        %textarea.edt.content=h activity[:content]
         %span.crud.icons
           %a.icon.icon-plus.add
           %a.icon.icon-wrench.wrench
