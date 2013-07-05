@@ -8,4 +8,5 @@ gem 'haml'
 gem 'tilt'
 gem 'sequel'
 gem 'json'
-gem "bcrypt-ruby", :require => "bcrypt"
+gem 'bcrypt-ruby', :require => 'bcrypt'
+gem 'sanitize'

@@ -14,9 +14,9 @@ class CreateActivity < Ground::Activity
   def activity
     @activity ||= {
       scene_id: scene_id,
-          role: role,
-        action: action,
-       content: content
+          role: sanitize(role),
+        action: sanitize(action),
+       content: sanitize(content)
     }
   end
   

@@ -18,8 +18,8 @@ class CreateScene < Ground::Activity
 
   def scene
     @scene ||= {
-      name: name,
-      description: description,
+      name: sanitize(name),
+      description: sanitize(description),
       pub: pub,
       user_id: user_id
     }

@@ -13,9 +13,9 @@ class UpdateActivity < Ground::Activity
 
   def activity
     @activity ||= {
-          role: role,
-        action: action,
-       content: content
+          role: sanitize(role),
+        action: sanitize(action),
+       content: sanitize(content)
     }
   end
   

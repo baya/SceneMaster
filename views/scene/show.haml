@@ -2,15 +2,15 @@
 %div#main.container-fluid
   %a.btn.btn-large.btn-primary.pull-right{href: Scene::Edit.path(@scene[:id])} 编辑
   %center
-    %h4.m0= @scene[:name]
-    %p= @scene[:description]  
+    %h4.m0=h @scene[:name]
+    %p=h @scene[:description]  
   %input#scene_id.data{type: 'hidden', value: @scene[:id]}
   %ul.unstyled
     - @activities.each do |activity|
       %li.activity
         %input.data{type: 'hidden', value: activity[:id]}
-        %span.label.label-inverse.role= activity[:role]
-        %span.label.action= activity[:action]
+        %span.label.label-inverse.role=h activity[:role]
+        %span.label.action=h activity[:action]
         - if not activity[:content] == ''
           %span.label.label-inverse.content=h activity[:content]
 
