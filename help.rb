@@ -9,7 +9,7 @@ Ground do
 
   end
   
-  help :all do
+  help :all_states do
 
     include HtmlSafe
     
