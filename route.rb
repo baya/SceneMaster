@@ -29,5 +29,8 @@ Ground do
   # my
   get '/my/scenes', My::Scenes
 
+  # ab
+  get '/ab', Benchmark::Hello
+
 end
 

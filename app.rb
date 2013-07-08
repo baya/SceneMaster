@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-libdir = '/Users/jiangguimin/Projects/ground/lib'
-# libdir = '/Users/jim/Projects/ground/lib'
+# libdir = '/Users/jiangguimin/Projects/ground/lib'
+libdir = '/Users/jim/Projects/ground/lib'
 $LOAD_PATH.unshift libdir unless $LOAD_PATH.include?(libdir)
 
 current_dir = File.expand_path(File.dirname(__FILE__))
@@ -28,21 +28,20 @@ require 'help'
 
 module SceneMaster
   # sequel -m migrations/ postgres://pgsql:@localhost/SceneMaster_development
-  DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
+  # DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
   # migration command, bin/sequel -E -m migrations/ sqlite://./SceneMaster_development.db
-  # DB = Sequel.sqlite('SceneMaster_development.db')
+  DB = Sequel.sqlite('SceneMaster_development.db')
   DB.loggers << ::Logger.new('logs/development.log')
   
   root = File.dirname(__FILE__)
   config = Ground::Config(views: File.expand_path(File.join(root, 'views')))
 
-  App = Ground::CreateApp(name: '场景大师', config: config)
-
-  Ground::StartApp app: App, port: 9393 do
+  App = Ground::CreateApp(name: '场景', config: config) do
     use Rack::ShowExceptions
     use Rack::CommonLogger
     use Rack::Static, :urls => ['/assets']
     use Rack::Session::Pool
   end
-  
+
 end
+
