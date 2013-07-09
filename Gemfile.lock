@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/baya/ground.git
+  revision: 527b321b9a31e2271c388ba5104935d8cd58b0bd
+  specs:
+    ground (0.0.1)
+      dun
+      rack
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -37,6 +45,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby
   dun
+  ground!
   haml
   json
   pg

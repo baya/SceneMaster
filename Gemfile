@@ -1,6 +1,8 @@
-source 'http://ruby.taobao.org/'
+source 'https://rubygems.org'
+# source 'http://ruby.taobao.org/'
 
 gem 'dun'
+gem 'ground', :git => 'git://github.com/baya/ground.git'
 gem 'sqlite3'
 gem 'pg'
 gem 'rack'
