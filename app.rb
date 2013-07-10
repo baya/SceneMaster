@@ -40,7 +40,7 @@ module SceneMaster
     use Rack::ShowExceptions
     use Rack::CommonLogger
     use Rack::Static, :urls => ['/assets']
-    use Rack::Session::Pool
+    use Rack::Session::Cookie
   end
 
 end
