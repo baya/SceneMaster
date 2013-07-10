@@ -7,7 +7,7 @@ GIT
       rack
 
 GEM
-  remote: http://ruby.taobao.org/
+  remote: https://rubygems.org/
   specs:
     bcrypt-ruby (3.0.1)
     daemons (1.1.9)
