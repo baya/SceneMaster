@@ -24,7 +24,7 @@ require 'help'
 
 module SceneMaster
   root = File.dirname(__FILE__)
-  # 部署到nitrous时,如果已daemon的形式启动应用，需要db_path的绝对路径，
+  # 部署到nitrous时,如果使用daemon的形式启动应用，需要数据库的绝对路径，
   # 否则会出现SQLite3::CantOpenException的错误
   db_path = File.expand_path(File.join(root, 'SceneMaster_development.db'))
   # sequel -m migrations/ postgres://pgsql:@localhost/SceneMaster_development
