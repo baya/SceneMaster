@@ -9,6 +9,7 @@ $LOAD_PATH.unshift activity_dir unless $LOAD_PATH.include?(activity_dir)
 require 'bundler/setup'
 require 'ground'
 require 'logger'
+require 'yaml'
 
 Bundler.require(:default)
 
@@ -24,9 +25,14 @@ require 'help'
 
 module SceneMaster
   root = File.dirname(__FILE__)
+  
+  db_config_path = File.expand_path(File.join(root, 'config', 'database.yml'))
+  db_info = YAML.load_file(db_config_path)[ENV['RACK_ENV']]
+
   # 部署到nitrous时,如果已daemon的形式启动应用，需要db_path的绝对路径，
   # 否则会出现SQLite3::CantOpenException的错误
-  db_path = File.expand_path(File.join(root, 'SceneMaster_development.db'))
+  db_path = File.expand_path(File.join(root, db_info['database']))
+  puts db_path
   # sequel -m migrations/ postgres://pgsql:@localhost/SceneMaster_development
   # DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
   # migration command, bin/sequel -E -m migrations/ sqlite://./SceneMaster_development.db
@@ -40,7 +46,9 @@ module SceneMaster
     use Rack::ShowExceptions
     use Rack::CommonLogger
     use Rack::Static, :urls => ['/assets']
-    use Rack::Session::Cookie
+    use Rack::Session::Cookie, {
+      secret: 'abc123'
+    }
   end
 
 end
