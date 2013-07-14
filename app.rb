@@ -2,6 +2,9 @@
 lib_dir = '/Users/jim/Projects/ground/lib'
 $LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include?(lib_dir)
 
+rack_dir = '/Users/jim/Codes/rack-1.4.5/lib'
+$LOAD_PATH.unshift rack_dir unless $LOAD_PATH.include?(rack_dir)
+
 current_dir = File.expand_path(File.dirname(__FILE__))
 $LOAD_PATH.unshift current_dir unless $LOAD_PATH.include?(current_dir)
 
@@ -10,6 +13,7 @@ $LOAD_PATH.unshift activity_dir unless $LOAD_PATH.include?(activity_dir)
 
 require 'bundler/setup'
 require 'ground'
+require 'rack'
 require 'logger'
 require 'yaml'
 
@@ -22,9 +26,7 @@ end
 
 load_rbfiles('protocol')
 load_rbfiles('activities')
-require 'config/routes'
-require 'config/helpers'
-require 'config/sets'
+load_rbfiles('config')
 
 module SceneMaster
 
@@ -33,7 +35,6 @@ module SceneMaster
 
   App = Ground '场景' do
     use Rack::ShowExceptions
-    use Rack::CommonLogger
     use Rack::Static, :urls => ['/assets']
     use Rack::Session::Cookie, {
       secret: 'abc123'

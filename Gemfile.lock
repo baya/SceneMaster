@@ -42,7 +42,6 @@ DEPENDENCIES
   json
   pg
   puma
-  rack
   rake
   sanitize
   sequel

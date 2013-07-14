@@ -17,6 +17,10 @@ Ground do
       Rack::Utils.escape_html(text)
     end
 
+    def logger
+      Ground.logger
+    end
+
   end
 
   help UpdateScene,

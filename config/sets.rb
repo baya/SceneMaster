@@ -4,5 +4,6 @@ Ground do
   set :env, (ENV['RACK_ENV'] || 'development').to_s
   set :db_info, YAML.load_file(File.join(root, 'config', 'database.yml'))[env]
   set :db, Sequel.connect(db_info)
-  set :logger, Logger.new(File.join(root, "logs", "#{env}.log"))
+  set :log_file, File.join(root, "logs", "#{env}.log")
+  set :logger, ::Logger.new(log_file)
 end
