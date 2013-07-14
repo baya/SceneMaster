@@ -32,9 +32,14 @@ $(function(){
 	content.val('');
     }
 
+
     function renderActivityData(data){
-        var html = getActivityHtmlText(data);
-	$('#add').parent().prev().before(html)
+	var new_activity = $('.activity:first-child').clone(true);
+	new_activity.find('.data').val(data.id);
+	new_activity.find('.role').text(data.role);
+	new_activity.find('.action').text(data.action);
+	new_activity.find('.content').text(data.content);
+	$('#add').parent().prev().before(new_activity);
     }
 
     function getActivityHtmlText(data){

@@ -1,8 +1,11 @@
 development:
-  adapter: sqlite
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: postgres
+  database: scene_development
+  host: localhost
+  user: scene
+  password: none
+  max_connections: 5
+  pool_timeout: 5000
 
 test:
   adapter: sqlite
