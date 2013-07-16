@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+lib_dir = '/Users/jim/Projects/ground/lib'
+$LOAD_PATH.unshift lib_dir unless $LOAD_PATH.include?(lib_dir)
+
+rack_dir = '/Users/jim/Codes/rack-1.4.5/lib'
+$LOAD_PATH.unshift rack_dir unless $LOAD_PATH.include?(rack_dir)
 
 current_dir = File.expand_path(File.dirname(__FILE__))
 $LOAD_PATH.unshift current_dir unless $LOAD_PATH.include?(current_dir)
@@ -8,7 +13,9 @@ $LOAD_PATH.unshift activity_dir unless $LOAD_PATH.include?(activity_dir)
 
 require 'bundler/setup'
 require 'ground'
+require 'rack'
 require 'logger'
+require 'yaml'
 
 Bundler.require(:default)
 
@@ -19,28 +26,19 @@ end
 
 load_rbfiles('protocol')
 load_rbfiles('activities')
-require 'route'
-require 'help'
+load_rbfiles('config')
 
 module SceneMaster
-  root = File.dirname(__FILE__)
-  # 部署到nitrous时,如果使用daemon的形式启动应用，需要数据库的绝对路径，
-  # 否则会出现SQLite3::CantOpenException的错误
-  db_path = File.expand_path(File.join(root, 'SceneMaster_development.db'))
-  # sequel -m migrations/ postgres://pgsql:@localhost/SceneMaster_development
-  # DB = Sequel.connect('postgres://pgsql:@localhost/SceneMaster_development')
-  # migration command, bin/sequel -E -m migrations/ sqlite://./SceneMaster_development.db
-  DB = Sequel.sqlite(db_path)
-  DB.loggers << ::Logger.new('logs/development.log')
-  
-  
-  config = Ground::Config(views: File.expand_path(File.join(root, 'views')))
 
-  App = Ground::CreateApp(name: '场景', config: config) do
+  DB = Ground.db
+  DB.loggers << Ground.logger
+
+  App = Ground '场景' do
     use Rack::ShowExceptions
-    use Rack::CommonLogger
     use Rack::Static, :urls => ['/assets']
-    use Rack::Session::Pool
+    use Rack::Session::Cookie, {
+      secret: 'abc123'
+    }
   end
 
 end
