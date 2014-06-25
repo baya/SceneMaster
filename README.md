@@ -1,1 +1,5 @@
-场景大师构建于ground之上，所以稳如磐石
+帮助人们掌控对话
+
+![](/images/Snip20140625_5.png)
+
+基于[ground](https://github.com/baya/ground)框架搭建

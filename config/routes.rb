@@ -2,13 +2,14 @@ Ground do
 
   # root
   get '/', Index
-  
+
   # session
   get   '/sign_up', Session::SignForm
   post  '/sign_up', Session::SignUp
   post  '/login',   Session::Login
   get   '/login',   Session::LoginForm
-  match '/logout',  Session::Logout
+  get   '/logout',  Session::Logout
+  post  '/logout',  Session::Logout
 
   # scene
   get  '/scenes',           Scene::Index
